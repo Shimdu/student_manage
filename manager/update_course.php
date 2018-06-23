@@ -36,7 +36,7 @@ if (isset($_POST['submit'])){
 
     $query = "UPDATE course SET name = '$cname', course_no = '$course_no', semester = '$semester', period = '$period', credit = '$credit', teacher_id = (SELECT id FROM teacher WHERE name = '$tname'), if_optional = '$if' WHERE id = $id";
     $result1 = mysqli_query($connection, $query);
-    header('Location: course.php');
+    header('Location: course.php?success=update');
     mysqli_free_result($result1);
 }
 

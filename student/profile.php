@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
     $query = "UPDATE student SET dob = '$dob', province = '$province', city = '$city', detail = '$detail', phone = '$phone', email = '$email', qq = '$qq' WHERE username = '$username'";
     $result1 = mysqli_query($connection,$query);
     mysqli_free_result($result1);
-    header('Location: profile.php');
+    header('Location: profile.php?success=1');
 }
 
 //Course information
@@ -86,7 +86,7 @@ if(isset($_POST['submit1'])){
             $query = "UPDATE student SET avatar = '$name' WHERE username = '$username'";
             $result2 = mysqli_query($connection,$query);
             mysqli_free_result($result2);
-            header('Location: profile.php');
+            header('Location: profile.php?success=avatar');
         }else{
             die('上传失败');
         }
@@ -108,7 +108,7 @@ if(isset($_POST['submit2'])){
             $query = "UPDATE student SET password = '$pass1' WHERE username = '$username'";
             $result2 = mysqli_query($connection, $query);
             mysqli_free_result($result2);
-            header('Location: profile.php');
+            header('Location: profile.php?success=password');
         } else {
             $error = "密码错误或两次输入的密码不同！";
         }
@@ -263,6 +263,29 @@ mysqli_close($connection);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            if($_GET['success']=="1"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地修改个人信息。
+                                </div>";
+                            }elseif($_GET['success']=="password"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地修改密码。
+                                </div>";
+                            }elseif($_GET['success']=="avatar"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地修改头像。
+                                </div>";
+                            }
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

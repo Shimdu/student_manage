@@ -29,8 +29,12 @@ if (isset($_POST['submit'])){
     
     $query = "INSERT INTO course (name, course_no, semester, period, credit, teacher_id) VALUES ('$cname', '$course_no', '$semester', '$period', '$credit', (SELECT id FROM teacher WHERE name = '$tname'))";
     $result2 = mysqli_query($connection, $query);
-    mysqli_free_result($result2);
-    header('Location: course.php');
+    if(!$result){
+        header('Location: course.php?success=2');
+    }else{
+        header('Location: course.php?success=1');
+    }
+
 }
 
 mysqli_close($connection);
@@ -210,6 +214,29 @@ mysqli_close($connection);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            if($_GET['success']=="1"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地添加一个课程。
+                                </div>";
+                            }elseif($_GET['success']=="del"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地删除一个课程。
+                                </div>";
+                            }elseif($_GET['success']=="2"){
+                                echo "<div class=\"alert alert-danger fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-remove alert-icon s24\"></i>
+                                    <strong>错误！</strong> 未能删除该课程。原因：该课程的信息已被录入至其它的信息
+                                </div>";
+                            }
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

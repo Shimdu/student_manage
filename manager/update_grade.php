@@ -29,7 +29,7 @@ if (isset($_POST['submit'])){
     $query = "UPDATE student_course SET grade = $grade, grade_point = $grade_point, score_type = '$score_type' WHERE id = $id";
     $result = mysqli_query($connection, $query);
     mysqli_free_result($result);
-    header('Location: grade_manage.php');
+    header('Location: grade_manage.php?success=update');
 }
 
 mysqli_close($connection);

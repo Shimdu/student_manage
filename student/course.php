@@ -25,7 +25,7 @@ if (isset($_POST['submit'])){
     $query = "INSERT INTO student_course (student_id, course_id) VALUES ('$sid','$cid')";
     $result = mysqli_query($connection,$query);
     mysqli_free_result($result);
-    header('Location: course.php');
+    header('Location: course.php?success=1');
 }
 
 //取消课程
@@ -34,7 +34,7 @@ if (isset($_POST['submit1'])){
     $query  = "DELETE FROM student_course WHERE id = $id";
     $result = mysqli_query($connection, $query);
     mysqli_free_result($result);
-    header('Location: course.php');
+    header('Location: course.php?success=2');
 }
 ?>
 <!DOCTYPE html>
@@ -197,6 +197,17 @@ if (isset($_POST['submit1'])){
                                     <h4 class="panel-title">可选课程</h4>
                                 </div>
                                 <div class="panel-body">
+                                    <?php
+                                    if(isset($_GET['success'])) {
+                                        if($_GET['success']=="1"){
+                                            echo "<div class=\"alert alert-success fade in\">
+                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                                <i class=\"fa-ok alert-icon s24\"></i>
+                                                <strong>完成！</strong> 成功地选择了该课程。
+                                            </div>";
+                                        }
+                                    }
+                                    ?>
                                     <form method="post" action="course.php">
                                         <table class="table display" id="datatable1">
                                             <thead>
@@ -248,6 +259,17 @@ if (isset($_POST['submit1'])){
                                     <h4 class="panel-title">已选课程</h4>
                                 </div>
                                 <div class="panel-body">
+                                    <?php
+                                    if(isset($_GET['success'])) {
+                                        if($_GET['success']=="2"){
+                                            echo "<div class=\"alert alert-success fade in\">
+                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                                <i class=\"fa-ok alert-icon s24\"></i>
+                                                <strong>完成！</strong> 成功地取消了该课程。
+                                            </div>";
+                                        }
+                                    }
+                                    ?>
                                     <form method="post" action="course.php">
                                         <table class="table display" id="datatable2">
                                             <thead>

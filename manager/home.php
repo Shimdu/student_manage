@@ -450,6 +450,16 @@ mysqli_close($connection);
                                 </div>
                             </div>
                             <!-- End .panel -->
+                            <div class="panel panel-default">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><i class="im-pie"></i>教师男女比例</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="donut-chart" style="width: 100%; height:250px;"></div>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="panel panel-info">
@@ -481,23 +491,14 @@ mysqli_close($connection);
                                     </form>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <!-- Start .panel -->
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><i class="im-pie"></i>饼状图表</h4>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="page-header">
-                                        <h5>学生男女比例</h5>
-                                    </div>
-                                    <div id="pie-chart" style="width: 100%; height:250px;"></div>
-                                    <div class="page-header">
-                                        <h5>教师男女比例</h5>
-                                    </div>
-                                    <div id="donut-chart" style="width: 100%; height:250px;"></div>
-                                </div>
+                        <div class="panel panel-default">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><i class="im-pie"></i>学生男女比例</h4>
                             </div>
-                            <!-- End .panel -->
+                            <div class="panel-body">
+                                <div id="pie-chart" style="width: 100%; height:250px;"></div>
+                            </div>
                         </div>
                     </div>
                     <!-- Page End here -->

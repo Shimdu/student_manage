@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
         die("query is wrong");
     }
     // Go back to
-    header('Location: bulletin.php');
+    header('Location: bulletin.php?success=del');
 } else {
     echo "No ID was given in the URL";
 }

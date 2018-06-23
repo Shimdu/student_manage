@@ -31,7 +31,7 @@ if (isset($_POST['submit'])){
     $query = "INSERT INTO teacher (name, teacher_no, gender, dob, academic_title, qq, phone, email, inauguration_date, leave_date, academy_id, username, role) VALUES ('$name', '$teacher_no', '$gender', '$dob', '$academic_title', '$qq', '$phone', '$email', '$inauguration', '$leave_date', (SELECT id FROM academy WHERE name = '$academy'), '$username', '$role')";
     $result1 = mysqli_query($connection, $query);
     mysqli_free_result($result1);
-    header('Location: teacher.php');
+    header('Location: teacher.php?succsess=1');
 }
 
 $query = "SELECT name FROM academy";
@@ -214,6 +214,29 @@ mysqli_close($connection);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            if($_GET['success']=="1"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地添加一名教师。
+                                </div>";
+                            }elseif($_GET['success']=="del"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>完成！</strong> 成功地删除一名教师。
+                                </div>";
+                            }elseif($_GET['success']=="2"){
+                                echo "<div class=\"alert alert-danger fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-remove alert-icon s24\"></i>
+                                    <strong>错误！</strong> 无法删除该教师。原因：该教师已被录入其它信息。
+                                </div>";
+                            }
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

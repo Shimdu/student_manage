@@ -184,6 +184,15 @@ $result = mysqli_query($connection,$query);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            echo "<div class=\"alert alert-success fade in\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                <i class=\"fa-ok alert-icon s24\"></i>
+                                <strong>完成！</strong> 成功地修改一名学生的成绩。
+                            </div>";
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

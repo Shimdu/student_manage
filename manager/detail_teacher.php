@@ -28,7 +28,7 @@ if(isset($_GET['id'])){
         $query = "UPDATE teacher SET dob = '$dob', phone = '$phone', email = '$email', qq = '$qq', username = '$username' WHERE id = $id";
         $result1 = mysqli_query($connection,$query);
         mysqli_free_result($result1);
-        header('Location: detail_teacher.php?id='.$id);
+        header('Location: detail_teacher.php?id='.$id.'&success=1');
     }
 
     //Course information
@@ -214,6 +214,15 @@ mysqli_close($connection);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            echo "<div class=\"alert alert-success fade in\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                <i class=\"fa-ok alert-icon s24\"></i>
+                                <strong>完成！</strong> 成功地修改该教师的个人信息。
+                            </div>";
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

@@ -11,10 +11,10 @@ if (isset($_GET['id'])) {
     // Do the query on the database
     $result = mysqli_query($connection, $query);
     if (!$result) {
-        die("query is wrong");
+        header('Location: teacher.php?success=2');
+    }else{
+        header('Location: teacher.php?success=del');
     }
-    // Go back
-    header('Location: teacher.php');
 } else {
     echo "No ID was given in the URL";
 }

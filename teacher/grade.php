@@ -30,7 +30,7 @@ if (isset($_POST['submit'])){
     $query = "UPDATE student_course SET grade = $grade, grade_point = $grade_point, score_type = '$score_type', storage_time = '$time', storage_staff = (SELECT id FROM teacher WHERE username = '$username') WHERE student_id = $sid AND course_id = $cid";
     $result1 = mysqli_query($connection, $query);
     mysqli_free_result($result1);
-    header('Location: grade.php');
+    header('Location: grade.php?success=1');
 }
 ?>
 <!DOCTYPE html>
@@ -204,6 +204,15 @@ if (isset($_POST['submit'])){
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            echo "<div class=\"alert alert-success fade in\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                <i class=\"fa-ok alert-icon s24\"></i>
+                                <strong>成功！</strong> 成功为该学生录入成绩。
+                            </div>";
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

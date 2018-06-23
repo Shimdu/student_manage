@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
     $query = "UPDATE student SET dob = '$dob', province = '$province', city = '$city', detail = '$detail', phone = '$phone', email = '$email', qq = '$qq' WHERE id = $id";
     $result1 = mysqli_query($connection,$query);
     mysqli_free_result($result1);
-    header('Location: detail_student.php?id='.$id);
+    header('Location: detail_student.php?id='.$id.'&success=1');
 }
 
 mysqli_close($connection);
@@ -216,6 +216,15 @@ mysqli_close($connection);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            echo "<div class=\"alert alert-success fade in\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                <i class=\"fa-ok alert-icon s24\"></i>
+                                <strong>完成！</strong> 成功地添加一名学生的信息。
+                            </div>";
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>

@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
         $query="INSERT INTO bulletin (content, time ,publisher_id) VALUES ('$content', '$time', (SELECT id FROM teacher WHERE username = '$username'))";
         $result1 = mysqli_query($connection,$query);
         mysqli_free_result($result1);
-        header('Location: bulletin.php');
+        header('Location: bulletin.php?success=1');
     }
 }
 
@@ -200,6 +200,23 @@ mysqli_close($connection);
                             </div>
                         </div>
                         <!-- End .option-buttons -->
+                        <?php
+                        if(isset($_GET['success'])) {
+                            if($_GET['success']=="1"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>成功！</strong> 成功添加一条公告。
+                                </div>";
+                            }elseif($_GET['success']=="del"){
+                                echo "<div class=\"alert alert-success fade in\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+                                    <i class=\"fa-ok alert-icon s24\"></i>
+                                    <strong>成功！</strong> 成功删除一条公告。
+                                </div>";
+                            }
+                        }
+                        ?>
                     </div>
                     <!-- End .page-header -->
                 </div>
